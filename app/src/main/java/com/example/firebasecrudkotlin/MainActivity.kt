@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                         list.add(i!!)
                     }
 
-                    val adapter = Adapter(applicationContext, R.layout.custom_layout, list)
+                    val adapter = Adapter(this@MainActivity, R.layout.custom_layout, list)
                     listView.adapter = adapter
                 }
 
@@ -69,7 +69,8 @@ class MainActivity : AppCompatActivity() {
             editTextContact.error = "Please enter value"
         }
         val id = ref.push().key
-        val model = Model(id, name, email, contact, ratingBar.numStars)
+//        val model = Model(id, name, email, contact, ratingBar.numStars)
+        val model = Model(id, name, email, contact, ratingBar.rating.toInt())
         ref.child(id!!).setValue(model).addOnCompleteListener {
             Toast.makeText(this, "Data save successfully", Toast.LENGTH_LONG).show()
         }
